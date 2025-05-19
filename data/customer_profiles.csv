@@ -1,0 +1,6 @@
+Customer_ID,Age,Gender,Location,Total_Spend
+C001,34,Male,New York,1200.50
+C002,28,Female,,830.00
+C003,,Female,Los Angeles,950.75
+C004,45,Male,Chicago,
+C005,31,,Seattle,720.10
