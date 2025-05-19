@@ -2,7 +2,7 @@
 
 > Create unified vector embeddings for customer profiling and segmentation
 
-[![Streamlit App](https://img.shields.io/badge/Live_App-Click_to_Launch-00bfff?logo=streamlit)](https://nik21hil-customer-vector-lab.streamlit.app)
+[![Streamlit App](https://img.shields.io/badge/Live_App-Click_to_Launch-00bfff?logo=streamlit)](https://customer-vector-lab-7c2fxjhe296qqwonpkhg6k.streamlit.app/)
 
 ---
 
