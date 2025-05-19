@@ -20,14 +20,14 @@ A lightweight, no-code interface to generate customer embeddings, cluster person
 
 st.markdown("---")
 
-st.markdown("### 📌 Description")
+st.markdown("##### 📌 Description")
 st.markdown("""
 **Customer Vector Lab** enables quick, interactive clustering and persona exploration for any structured customer dataset.
 
 It transforms raw customer records into meaningful segments using PCA-based embeddings and KMeans clustering, then visualizes them using scatter plots, UMAP, t-SNE, radar charts, and downloadable CSVs — all in a browser-friendly format.
 """)
 
-st.markdown("### 📂 Supported Data")
+st.markdown("##### 📂 Supported Data")
 st.markdown("""
 - Any **CSV** with numeric customer features
 - Typical fields include:
@@ -38,7 +38,7 @@ st.markdown("""
 _Categorical columns and IDs are automatically excluded during preprocessing._
 """)
 
-st.markdown("### 🧰 Features")
+st.markdown("##### 🧰 Features")
 st.markdown("""
 This tool allows you to:
 
@@ -52,7 +52,7 @@ This tool allows you to:
 Great for segmentation, personalization, and analytics storytelling.
 """)
 
-st.markdown("### 🚀 Use Cases")
+st.markdown("##### 🚀 Use Cases")
 st.markdown("""
 - Customer persona generation for marketing and targeting
 - Segment discovery for business intelligence teams
