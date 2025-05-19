@@ -17,9 +17,7 @@ st.markdown("""
 A lightweight, no-code interface to generate customer embeddings, cluster personas, and visualize segmentation insights.
 </div>
 """, unsafe_allow_html=True)
-
 st.markdown("---")
-
 st.markdown("##### 📌 Description")
 st.markdown("""
 **Customer Vector Lab** enables quick, interactive clustering and persona exploration for any structured customer dataset.
