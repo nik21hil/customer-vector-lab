@@ -8,24 +8,28 @@ import umap
 from sklearn.manifold import TSNE
 
 def plot_umap(df_embeddings: pd.DataFrame, labels=None, title="UMAP Projection"):
+    import matplotlib.pyplot as plt
+    import pandas as pd
+    import numpy as np
+    import umap
+
     reducer = umap.UMAP(random_state=42)
     embedding = reducer.fit_transform(df_embeddings)
 
-    plt.figure(figsize=(6,5))
-    
-    # Make sure labels are valid and numeric
-    if labels is not None and pd.api.types.is_numeric_dtype(labels):
-        plt.scatter(embedding[:, 0], embedding[:, 1], c=labels, cmap='tab10', edgecolor='k')
-    else:
-        plt.scatter(embedding[:, 0], embedding[:, 1], color='grey', edgecolor='k')
-        print("⚠️ Labels for coloring UMAP plot are missing or non-numeric. Using default color.")
+    fig, ax = plt.subplots(figsize=(6,5))
 
-    plt.title(title)
-    plt.xlabel("UMAP-1")
-    plt.ylabel("UMAP-2")
-    plt.grid(True)
-    plt.tight_layout()
-    plt.show()
+    if labels is not None and pd.api.types.is_numeric_dtype(labels):
+        scatter = ax.scatter(embedding[:, 0], embedding[:, 1], c=labels, cmap='tab10', edgecolor='k')
+    else:
+        scatter = ax.scatter(embedding[:, 0], embedding[:, 1], color='gray', edgecolor='k')
+        print("⚠️ Labels for coloring UMAP plot are missing or non-numeric.")
+
+    ax.set_title(title)
+    ax.set_xlabel("UMAP-1")
+    ax.set_ylabel("UMAP-2")
+    ax.grid(True)
+
+    return fig
 
 
 def plot_tsne(df_embeddings: pd.DataFrame, labels=None, title="t-SNE Projection"):
@@ -54,15 +58,13 @@ def plot_cluster_distribution(df_with_clusters: pd.DataFrame):
     plt.show()
 
 def plot_radar_chart(df: pd.DataFrame, cluster_col: str, numeric_cols: list):
-    """
-    Plots a radar chart for each cluster based on average values of selected numeric columns.
-    """
+    import numpy as np
+    import matplotlib.pyplot as plt
+
     clusters = df[cluster_col].unique()
     num_vars = len(numeric_cols)
     angles = np.linspace(0, 2 * np.pi, num_vars, endpoint=False).tolist()
-
-    # Complete the loop
-    angles += angles[:1]
+    angles += angles[:1]  # loop
 
     fig, ax = plt.subplots(figsize=(6, 6), subplot_kw=dict(polar=True))
 
@@ -74,10 +76,7 @@ def plot_radar_chart(df: pd.DataFrame, cluster_col: str, numeric_cols: list):
 
     ax.set_theta_offset(np.pi / 2)
     ax.set_theta_direction(-1)
-
-    # Labels
     ax.set_thetagrids(np.degrees(angles[:-1]), numeric_cols)
     ax.set_title("Cluster Personas Radar Chart", y=1.08)
     ax.legend(loc='upper right', bbox_to_anchor=(1.2, 1.1))
-    plt.tight_layout()
-    plt.show()
+    return fig

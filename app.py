@@ -40,7 +40,8 @@ if uploaded_file is not None:
     st.pyplot(fig)
 
     st.subheader("📊 UMAP Projection")
-    plot_umap(df_pca, labels=df_with_clusters['Cluster'])
+    st.pyplot(plot_umap(df_pca, labels=df_with_clusters['Cluster']))
+
 
     st.subheader("🕸️ Cluster Personas (Radar Chart)")
 
@@ -49,6 +50,7 @@ if uploaded_file is not None:
     exclude_cols = ['PC1', 'PC2', 'Cluster']  # Don’t include PCA or cluster labels
     radar_cols = [col for col in all_numeric_cols if col not in exclude_cols]
     if radar_cols:
-        plot_radar_chart(df_with_clusters, cluster_col='Cluster', numeric_cols=radar_cols)
+        st.pyplot(plot_radar_chart(df_with_clusters, cluster_col='Cluster', numeric_cols=radar_cols))
+
     else:
         st.warning("No suitable numeric columns found for radar chart.")
