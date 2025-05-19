@@ -6,7 +6,8 @@ import matplotlib.pyplot as plt
 from src.preprocess import load_customer_data, clean_customer_data
 from src.embeddings import get_numeric_features, scale_features, generate_pca_embeddings
 from src.clustering import perform_kmeans
-from src.visualize import plot_umap, plot_radar_chart
+from src.visualize import plot_umap, plot_radar_chart, plot_cluster_distribution, plot_tsne
+
 
 st.set_page_config(page_title="Audience Vector Builder", layout="wide")
 
