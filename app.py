@@ -10,7 +10,7 @@ from src.visualize import plot_umap, plot_radar_chart, plot_cluster_distribution
 
 st.set_page_config(page_title="Customer Vector Lab")
 
-st.title("🧠 Customer Vector Lab")
+st.markdown("<h1 style='text-align: center;'>🧠 Customer Vector Lab</h1>", unsafe_allow_html=True)
 st.markdown("""
 This tool allows you to:
 - Upload customer datasets
@@ -24,6 +24,7 @@ Great for segmentation, personalization, and analytics storytelling.
 """)
 
 # File uploader
+st.markdown("##### Uploaded CSV")
 uploaded_file = st.file_uploader("Upload CSV", type="csv")
 
 if uploaded_file is not None:
