@@ -9,7 +9,7 @@ from src.clustering import perform_kmeans
 from src.visualize import plot_umap, plot_radar_chart, plot_cluster_distribution, plot_tsne
 
 
-st.set_page_config(page_title="Audience Vector Builder", layout="wide")
+st.set_page_config(page_title="Customer Vector Lab")
 
 st.title("🧠 Customer Vector Lab")
 st.markdown("""
