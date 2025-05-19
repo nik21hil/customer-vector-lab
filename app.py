@@ -11,8 +11,18 @@ from src.visualize import plot_umap, plot_radar_chart, plot_cluster_distribution
 
 st.set_page_config(page_title="Audience Vector Builder", layout="wide")
 
-st.title("🧠 Audience Vector Builder")
-st.markdown("Upload your customer data to explore clusters and build audience profiles.")
+st.title("🧠 Customer Vector Lab")
+st.markdown("""
+This tool allows you to:
+- Upload customer datasets
+- Automatically clean and standardize your data
+- Generate vector embeddings using PCA
+- Cluster customers into personas
+- Visualize clusters using PCA, UMAP, and t-SNE
+- Profile clusters with radar charts
+
+Great for segmentation, personalization, and analytics storytelling.
+""")
 
 # File uploader
 uploaded_file = st.file_uploader("Upload CSV", type="csv")
