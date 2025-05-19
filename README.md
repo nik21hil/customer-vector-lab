@@ -91,5 +91,4 @@ MIT License — feel free to fork, remix, and use.
 ## 🙌 Acknowledgements
 
 Built by [@nik21hil](https://github.com/nik21hil)  
-This project is part of original contributions in analytics, vector-based segmentation, and customer clustering tools for EB1A evidence and open-source dissemination.
 
