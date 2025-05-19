@@ -24,22 +24,6 @@ It's perfect for **data scientists**, **marketers**, and **business analysts** t
 
 ---
 
-## 📸 Sample Outputs
-
-| PCA Scatter (Clustered) | UMAP + t-SNE Projection |
-|-------------------------|--------------------------|
-| ![PCA](assets/pca.png)  | ![UMAP](assets/umap_tsne.png) |
-
-> 📌 _Add screenshots here after taking them — let me know if you want help formatting or exporting._
-
----
-
-## 🚀 Live Demo
-
-👉 [Launch the App](https://nik21hil-customer-vector-lab.streamlit.app)
-
----
-
 ## 🧑‍💻 How to Run Locally
 
 ```bash
@@ -47,7 +31,7 @@ It's perfect for **data scientists**, **marketers**, and **business analysts** t
 git clone https://github.com/nik21hil/customer-vector-lab.git
 cd customer-vector-lab
 
-# 2. (Optional) Create virtual env
+# 2. (Optional) Create virtual environment
 python -m venv env
 source env/bin/activate
 
@@ -56,3 +40,56 @@ pip install -r requirements.txt
 
 # 4. Run the Streamlit app
 streamlit run app.py
+```
+
+---
+
+## 📂 Folder Structure
+
+```
+customer-vector-lab/
+├── data/              # Sample customer CSVs
+├── notebooks/         # Jupyter demo notebooks
+├── src/               # Modular Python code
+│   ├── preprocess.py
+│   ├── embeddings.py
+│   ├── clustering.py
+│   ├── visualize.py
+├── app.py             # Main Streamlit app
+├── requirements.txt
+└── README.md
+```
+
+---
+
+## 📊 Built With
+
+- [Streamlit](https://streamlit.io/)
+- [scikit-learn](https://scikit-learn.org/)
+- [UMAP](https://umap-learn.readthedocs.io/en/latest/)
+- [matplotlib](https://matplotlib.org/)
+- [pandas](https://pandas.pydata.org/)
+
+---
+
+## 💡 Future Improvements
+
+- Export clusters and segments as downloadable CSVs
+- Allow users to choose number of clusters dynamically
+- Add support for categorical variable encoding
+- Filter and zoom into radar chart personas
+- Add authentication for saving runs
+
+---
+
+## 🧾 License
+
+MIT License — feel free to fork, remix, and use.
+
+---
+
+## 🙌 Acknowledgements
+
+Built by [@nik21hil](https://github.com/nik21hil)  
+This project is part of original contributions in analytics, vector-based segmentation, and customer clustering tools for EB1A evidence and open-source dissemination.
+
