@@ -28,6 +28,7 @@ if uploaded_file is not None:
     df_with_clusters = df_clean.copy().reset_index(drop=True)
     df_with_clusters[['PC1', 'PC2']] = df_pca
     df_with_clusters['Cluster'] = perform_kmeans(df_pca, n_clusters=3)
+    df_with_clusters['Cluster'] = df_with_clusters['Cluster'].astype(int)
 
     st.subheader("🔍 PCA Scatter Plot")
     fig, ax = plt.subplots(figsize=(6,5))
@@ -42,8 +43,12 @@ if uploaded_file is not None:
     plot_umap(df_pca, labels=df_with_clusters['Cluster'])
 
     st.subheader("🕸️ Cluster Personas (Radar Chart)")
-    numeric_cols = [col for col in ['age', 'total_spend'] if col in df_with_clusters.columns]
-    if numeric_cols:
-        plot_radar_chart(df_with_clusters, cluster_col='Cluster', numeric_cols=numeric_cols)
+
+    # Dynamically select numeric columns
+    all_numeric_cols = df_with_clusters.select_dtypes(include='number').columns.tolist()
+    exclude_cols = ['PC1', 'PC2', 'Cluster']  # Don’t include PCA or cluster labels
+    radar_cols = [col for col in all_numeric_cols if col not in exclude_cols]
+    if radar_cols:
+        plot_radar_chart(df_with_clusters, cluster_col='Cluster', numeric_cols=radar_cols)
     else:
-        st.warning("No suitable numeric columns for radar chart.")
+        st.warning("No suitable numeric columns found for radar chart.")
