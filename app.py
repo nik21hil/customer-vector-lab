@@ -41,24 +41,21 @@ if uploaded_file is not None:
     df_with_clusters['Cluster'] = perform_kmeans(df_pca, n_clusters=3)
     df_with_clusters['Cluster'] = df_with_clusters['Cluster'].astype(int)
 
-    st.markdown("---")
-    st.subheader("🔍 PCA Scatter Plot")
-    fig, ax = plt.subplots(figsize=(6,5))
-    scatter = ax.scatter(df_with_clusters["PC1"], df_with_clusters["PC2"], 
-                         c=df_with_clusters["Cluster"], cmap='rainbow', edgecolor='k')
-    ax.set_xlabel("PC1")
-    ax.set_ylabel("PC2")
-    ax.set_title("Customer Clusters")
-    st.pyplot(fig)
-
-    st.markdown("---")
-    st.subheader("📊 Cluster Distribution")
-    st.pyplot(plot_cluster_distribution(df_with_clusters))
+    st.markdown("### 🔍 PCA Scatter Plot")
+    with st.container():
+        fig, ax = plt.subplots(figsize=(5,4))
+        scatter = ax.scatter(df_with_clusters["PC1"], df_with_clusters["PC2"], 
+                             c=df_with_clusters["Cluster"], cmap='rainbow', edgecolor='k')
+        ax.set_xlabel("PC1")
+        ax.set_ylabel("PC2")
+        ax.set_title("Customer Clusters")
+        st.pyplot(fig)
     
-
-    st.markdown("---")
-    st.subheader("🧬 Dimensionality Reduction Visualizations")
+    st.markdown("### 📊 Cluster Distribution")
+    with st.container():
+        st.pyplot(plot_cluster_distribution(df_with_clusters))
     
+    st.markdown("### 🧬 Dimensionality Reduction Visuals")
     col1, col2 = st.columns(2)
 
     with col1:
@@ -69,15 +66,17 @@ if uploaded_file is not None:
         st.markdown("**t-SNE Projection**")
         st.pyplot(plot_tsne(df_pca, labels=df_with_clusters['Cluster']))
 
-    st.markdown("---")
-    st.subheader("🕸️ Cluster Personas (Radar Chart)")
+
+    st.markdown("### 🕸️ Cluster Personas (Radar Chart)")
+    st.markdown("Shows average values of selected numeric fields across clusters, e.g., age, income, spend.")
 
     # Dynamically select numeric columns
     all_numeric_cols = df_with_clusters.select_dtypes(include='number').columns.tolist()
     exclude_cols = ['PC1', 'PC2', 'Cluster']  # Don’t include PCA or cluster labels
     radar_cols = [col for col in all_numeric_cols if col not in exclude_cols]
     if radar_cols:
-        st.pyplot(plot_radar_chart(df_with_clusters, cluster_col='Cluster', numeric_cols=radar_cols))
+        with st.container():
+            st.pyplot(plot_radar_chart(df_with_clusters, cluster_col='Cluster', numeric_cols=radar_cols))
 
     else:
         st.warning("No suitable numeric columns found for radar chart.")
