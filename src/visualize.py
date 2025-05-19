@@ -10,12 +10,21 @@ from sklearn.manifold import TSNE
 def plot_umap(df_embeddings: pd.DataFrame, labels=None, title="UMAP Projection"):
     reducer = umap.UMAP(random_state=42)
     embedding = reducer.fit_transform(df_embeddings)
+
     plt.figure(figsize=(6,5))
-    plt.scatter(embedding[:, 0], embedding[:, 1], c=labels, cmap='tab10', edgecolor='k')
+    
+    # Make sure labels are valid and numeric
+    if labels is not None and pd.api.types.is_numeric_dtype(labels):
+        plt.scatter(embedding[:, 0], embedding[:, 1], c=labels, cmap='tab10', edgecolor='k')
+    else:
+        plt.scatter(embedding[:, 0], embedding[:, 1], color='grey', edgecolor='k')
+        print("⚠️ Labels for coloring UMAP plot are missing or non-numeric. Using default color.")
+
     plt.title(title)
     plt.xlabel("UMAP-1")
     plt.ylabel("UMAP-2")
     plt.grid(True)
+    plt.tight_layout()
     plt.show()
 
 
