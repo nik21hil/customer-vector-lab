@@ -9,7 +9,7 @@ from src.clustering import perform_kmeans
 from src.visualize import plot_umap, plot_radar_chart, plot_cluster_distribution, plot_tsne
 
 
-st.set_page_config(page_title="Audience Vector Builder", layout="wide")
+st.set_page_config(page_title="Customer Vector Lab")
 
 st.title("🧠 Customer Vector Lab")
 st.markdown("""
@@ -29,8 +29,12 @@ uploaded_file = st.file_uploader("Upload CSV", type="csv")
 
 if uploaded_file is not None:
     df = pd.read_csv(uploaded_file)
-    st.subheader("📄 Raw Uploaded Data")
+    st.markdown("### 📄 Raw Uploaded Data")
     st.dataframe(df.head())
+
+    # Select number of clusters
+    st.sidebar.markdown("## 🔢 Clustering Controls")
+    n_clusters = st.sidebar.slider("Select number of clusters (K):", min_value=2, max_value=10, value=3)
 
     df_clean = clean_customer_data(df)
     df_numeric = get_numeric_features(df_clean)
@@ -38,7 +42,7 @@ if uploaded_file is not None:
     df_pca = generate_pca_embeddings(df_scaled, n_components=2)
     df_with_clusters = df_clean.copy().reset_index(drop=True)
     df_with_clusters[['PC1', 'PC2']] = df_pca
-    df_with_clusters['Cluster'] = perform_kmeans(df_pca, n_clusters=3)
+    df_with_clusters['Cluster'] = perform_kmeans(df_pca, n_clusters=n_clusters)
     df_with_clusters['Cluster'] = df_with_clusters['Cluster'].astype(int)
 
     st.markdown("### 🔍 PCA Scatter Plot")
@@ -73,10 +77,34 @@ if uploaded_file is not None:
     # Dynamically select numeric columns
     all_numeric_cols = df_with_clusters.select_dtypes(include='number').columns.tolist()
     exclude_cols = ['PC1', 'PC2', 'Cluster']  # Don’t include PCA or cluster labels
-    radar_cols = [col for col in all_numeric_cols if col not in exclude_cols]
+    default_radar_cols = [col for col in all_numeric_cols if col not in exclude_cols]
+    st.sidebar.markdown("## 🕸️ Radar Chart Features")
+    radar_cols = st.sidebar.multiselect("Select numeric features to show in radar chart:",
+                                        options=default_radar_cols,
+                                        default=default_radar_cols[:3])
     if radar_cols:
         with st.container():
             st.pyplot(plot_radar_chart(df_with_clusters, cluster_col='Cluster', numeric_cols=radar_cols))
 
     else:
         st.warning("No suitable numeric columns found for radar chart.")
+
+    st.markdown("---")
+    st.markdown("### 📋 Persona Summary Table")
+    
+    if radar_cols:
+        cluster_summary = df_with_clusters.groupby('Cluster')[radar_cols].mean().round(2)
+        st.dataframe(cluster_summary)
+    else:
+        st.warning("No numeric columns selected to build cluster summaries.")
+
+    st.markdown("---")
+    st.markdown("### 📤 Download Clustered Output")
+    
+    csv = df_with_clusters.to_csv(index=False).encode('utf-8')
+    st.download_button(
+        label="Download clustered data as CSV",
+        data=csv,
+        file_name='customer_clusters.csv',
+        mime='text/csv',
+    )
