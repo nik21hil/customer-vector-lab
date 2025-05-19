@@ -24,7 +24,7 @@ Great for segmentation, personalization, and analytics storytelling.
 """)
 
 # File uploader
-st.markdown("##### Uploaded CSV")
+st.markdown("###### Upload CSV")
 uploaded_file = st.file_uploader("Upload CSV", type="csv")
 
 if uploaded_file is not None:
