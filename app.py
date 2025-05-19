@@ -30,6 +30,7 @@ if uploaded_file is not None:
     df_with_clusters['Cluster'] = perform_kmeans(df_pca, n_clusters=3)
     df_with_clusters['Cluster'] = df_with_clusters['Cluster'].astype(int)
 
+    st.markdown("---")
     st.subheader("🔍 PCA Scatter Plot")
     fig, ax = plt.subplots(figsize=(6,5))
     scatter = ax.scatter(df_with_clusters["PC1"], df_with_clusters["PC2"], 
@@ -39,10 +40,25 @@ if uploaded_file is not None:
     ax.set_title("Customer Clusters")
     st.pyplot(fig)
 
-    st.subheader("📊 UMAP Projection")
-    st.pyplot(plot_umap(df_pca, labels=df_with_clusters['Cluster']))
+    st.markdown("---")
+    st.subheader("📊 Cluster Distribution")
+    st.pyplot(plot_cluster_distribution(df_with_clusters))
+    
 
+    st.markdown("---")
+    st.subheader("🧬 Dimensionality Reduction Visualizations")
+    
+    col1, col2 = st.columns(2)
 
+    with col1:
+        st.markdown("**UMAP Projection**")
+        st.pyplot(plot_umap(df_pca, labels=df_with_clusters['Cluster']))
+
+    with col2:
+        st.markdown("**t-SNE Projection**")
+        st.pyplot(plot_tsne(df_pca, labels=df_with_clusters['Cluster']))
+
+    st.markdown("---")
     st.subheader("🕸️ Cluster Personas (Radar Chart)")
 
     # Dynamically select numeric columns

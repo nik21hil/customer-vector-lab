@@ -31,31 +31,34 @@ def plot_umap(df_embeddings: pd.DataFrame, labels=None, title="UMAP Projection")
 
     return fig
 
-
 def plot_tsne(df_embeddings: pd.DataFrame, labels=None, title="t-SNE Projection"):
-    print("test")
     n_samples = df_embeddings.shape[0]
-    # Perplexity must be less than n_samples / 3
-    perplexity = max(1, min(2, (n_samples - 1) // 3))
+    perplexity = max(1, min(30, (n_samples - 1) // 3))
 
     tsne = TSNE(n_components=2, perplexity=perplexity, random_state=42)
     embedding = tsne.fit_transform(df_embeddings)
 
-    plt.figure(figsize=(6,5))
-    plt.scatter(embedding[:, 0], embedding[:, 1], c=labels, cmap='tab10', edgecolor='k')
-    plt.title(title + f" (perplexity={perplexity})")
-    plt.xlabel("tSNE-1")
-    plt.ylabel("tSNE-2")
-    plt.grid(True)
-    plt.show()
+    fig, ax = plt.subplots(figsize=(6,5))
+    if labels is not None and pd.api.types.is_numeric_dtype(labels):
+        ax.scatter(embedding[:, 0], embedding[:, 1], c=labels, cmap='tab10', edgecolor='k')
+    else:
+        ax.scatter(embedding[:, 0], embedding[:, 1], color='gray', edgecolor='k')
+
+    ax.set_title(title + f" (perplexity={perplexity})")
+    ax.set_xlabel("tSNE-1")
+    ax.set_ylabel("tSNE-2")
+    ax.grid(True)
+    return fig
+
 
 def plot_cluster_distribution(df_with_clusters: pd.DataFrame):
-    sns.countplot(x='Cluster', data=df_with_clusters, palette='pastel')
-    plt.title("Customer Distribution by Cluster")
-    plt.xlabel("Cluster Label")
-    plt.ylabel("Count")
-    plt.grid(True)
-    plt.show()
+    fig, ax = plt.subplots(figsize=(5, 4))
+    sns.countplot(x='Cluster', data=df_with_clusters, palette='pastel', ax=ax)
+    ax.set_title("Customer Count per Cluster")
+    ax.set_xlabel("Cluster")
+    ax.set_ylabel("Count")
+    ax.grid(True)
+    return fig
 
 def plot_radar_chart(df: pd.DataFrame, cluster_col: str, numeric_cols: list):
     import numpy as np
