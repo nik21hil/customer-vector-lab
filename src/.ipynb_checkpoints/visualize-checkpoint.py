@@ -8,52 +8,66 @@ import umap
 from sklearn.manifold import TSNE
 
 def plot_umap(df_embeddings: pd.DataFrame, labels=None, title="UMAP Projection"):
+    import matplotlib.pyplot as plt
+    import pandas as pd
+    import numpy as np
+    import umap
+
     reducer = umap.UMAP(random_state=42)
     embedding = reducer.fit_transform(df_embeddings)
-    plt.figure(figsize=(6,5))
-    plt.scatter(embedding[:, 0], embedding[:, 1], c=labels, cmap='tab10', edgecolor='k')
-    plt.title(title)
-    plt.xlabel("UMAP-1")
-    plt.ylabel("UMAP-2")
-    plt.grid(True)
-    plt.show()
 
+    fig, ax = plt.subplots(figsize=(6,5))
+
+    if labels is not None and pd.api.types.is_numeric_dtype(labels):
+        scatter = ax.scatter(embedding[:, 0], embedding[:, 1], c=labels, cmap='tab10', edgecolor='k')
+    else:
+        scatter = ax.scatter(embedding[:, 0], embedding[:, 1], color='gray', edgecolor='k')
+        print("⚠️ Labels for coloring UMAP plot are missing or non-numeric.")
+
+    ax.set_title(title)
+    ax.set_xlabel("UMAP-1")
+    ax.set_ylabel("UMAP-2")
+    ax.grid(True)
+
+    return fig
 
 def plot_tsne(df_embeddings: pd.DataFrame, labels=None, title="t-SNE Projection"):
-    print("test")
     n_samples = df_embeddings.shape[0]
-    # Perplexity must be less than n_samples / 3
-    perplexity = max(1, min(2, (n_samples - 1) // 3))
+    perplexity = max(1, min(30, (n_samples - 1) // 3))
 
     tsne = TSNE(n_components=2, perplexity=perplexity, random_state=42)
     embedding = tsne.fit_transform(df_embeddings)
 
-    plt.figure(figsize=(6,5))
-    plt.scatter(embedding[:, 0], embedding[:, 1], c=labels, cmap='tab10', edgecolor='k')
-    plt.title(title + f" (perplexity={perplexity})")
-    plt.xlabel("tSNE-1")
-    plt.ylabel("tSNE-2")
-    plt.grid(True)
-    plt.show()
+    fig, ax = plt.subplots(figsize=(6,5))
+    if labels is not None and pd.api.types.is_numeric_dtype(labels):
+        ax.scatter(embedding[:, 0], embedding[:, 1], c=labels, cmap='tab10', edgecolor='k')
+    else:
+        ax.scatter(embedding[:, 0], embedding[:, 1], color='gray', edgecolor='k')
+
+    ax.set_title(title + f" (perplexity={perplexity})")
+    ax.set_xlabel("tSNE-1")
+    ax.set_ylabel("tSNE-2")
+    ax.grid(True)
+    return fig
+
 
 def plot_cluster_distribution(df_with_clusters: pd.DataFrame):
-    sns.countplot(x='Cluster', data=df_with_clusters, palette='pastel')
-    plt.title("Customer Distribution by Cluster")
-    plt.xlabel("Cluster Label")
-    plt.ylabel("Count")
-    plt.grid(True)
-    plt.show()
+    fig, ax = plt.subplots(figsize=(5, 4))
+    sns.countplot(x='Cluster', data=df_with_clusters, palette='pastel', ax=ax)
+    ax.set_title("Customer Count per Cluster")
+    ax.set_xlabel("Cluster")
+    ax.set_ylabel("Count")
+    ax.grid(True)
+    return fig
 
 def plot_radar_chart(df: pd.DataFrame, cluster_col: str, numeric_cols: list):
-    """
-    Plots a radar chart for each cluster based on average values of selected numeric columns.
-    """
+    import numpy as np
+    import matplotlib.pyplot as plt
+
     clusters = df[cluster_col].unique()
     num_vars = len(numeric_cols)
     angles = np.linspace(0, 2 * np.pi, num_vars, endpoint=False).tolist()
-
-    # Complete the loop
-    angles += angles[:1]
+    angles += angles[:1]  # loop
 
     fig, ax = plt.subplots(figsize=(6, 6), subplot_kw=dict(polar=True))
 
@@ -65,10 +79,7 @@ def plot_radar_chart(df: pd.DataFrame, cluster_col: str, numeric_cols: list):
 
     ax.set_theta_offset(np.pi / 2)
     ax.set_theta_direction(-1)
-
-    # Labels
     ax.set_thetagrids(np.degrees(angles[:-1]), numeric_cols)
     ax.set_title("Cluster Personas Radar Chart", y=1.08)
     ax.legend(loc='upper right', bbox_to_anchor=(1.2, 1.1))
-    plt.tight_layout()
-    plt.show()
+    return fig
