@@ -90,7 +90,7 @@ if uploaded_file is not None:
 
         st.markdown("#### 🕸️ Radar Chart Features")        
         radar_cols = st.multiselect("Select numeric features for radar chart:", options=default_radar_cols, default=default_radar_cols[:3])
-        apply_clicked = st.form_submit_button("✅ Apply Changes")
+        apply_clicked = st.form_submit_button("Update")
 
     if apply_clicked:
         df_with_clusters = df_clean.copy().reset_index(drop=True)
