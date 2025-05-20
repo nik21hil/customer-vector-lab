@@ -22,7 +22,7 @@ st.markdown(
         <img src="https://raw.githubusercontent.com/nik21hil/customer-vector-lab/main/assets/ns_logo1_transparent.png" width="100">
         <h1 style="margin: 0; font-size: 48px;">Customer Vector Lab</h1>
     </div>
-    <p style="text-align: center; color: gray; font-size: 15px; margin-top: -10px; margin-bottom: 0px;">
+    <p style="text-align: center; color: gray; font-size: 15px; margin-top: -10px; margin-bottom: 1px;">
         A lightweight, no-code interface to generate customer embeddings, cluster personas, and visualize segmentation insights.
     </p>
     """,
@@ -104,6 +104,8 @@ if uploaded_file is not None:
         df_with_clusters[['PC1', 'PC2']] = df_pca
         df_with_clusters['Cluster'] = perform_kmeans(df_pca, n_clusters=n_clusters)
         df_with_clusters['Cluster'] = df_with_clusters['Cluster'].astype(int)
+
+        st.markdown("---")
 
         # PCA + Cluster Distribution side-by-side
         st.markdown("##### 📊 PCA & Cluster Distribution")
