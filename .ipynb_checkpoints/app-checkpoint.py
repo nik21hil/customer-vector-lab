@@ -18,14 +18,19 @@ st.set_page_config(
 
 st.markdown(
     """
-    <div style='text-align: center;'>
-        <img src='https://raw.githubusercontent.com/nik21hil/customer-vector-lab/main/assets/ns_logo1.png' width='120'>
-        <h1 style='margin-bottom: 5px;'>VectorLab</h1>
-        <p style='color: gray; font-size: 16px; margin-top: -10px;'>Customer Segmentation · Embeddings · Personas</p>
+    <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 20px;">
+        <img src="https://raw.githubusercontent.com/nik21hil/customer-vector-lab/main/assets/ns_logo1.png" width="60" style="margin-right: 10px;">
+        <div>
+            <h1 style="margin: 0; font-size: 32px;">VectorLab</h1>
+            <p style="margin: 0; color: gray; font-size: 15px;">
+                Customer Segmentation · Embeddings · Personas
+            </p>
+        </div>
     </div>
     """,
     unsafe_allow_html=True
 )
+
 
 st.markdown("""
 <div style='text-align: center; font-size:16px;'>
