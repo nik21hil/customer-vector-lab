@@ -19,7 +19,7 @@ st.set_page_config(
 st.markdown(
     """
     <div style='text-align: center;'>
-        <img src='https://raw.githubusercontent.com/nik21hil/customer-vector-lab/assets/ns_logo1_transparent.png' width='120'>
+        <img src='https://raw.githubusercontent.com/nik21hil/customer-vector-lab/assets/ns_logo1.png' width='120'>
         <h1 style='margin-bottom: 5px;'>VectorLab</h1>
         <p style='color: gray; font-size: 16px; margin-top: -10px;'>Customer Segmentation · Embeddings · Personas</p>
     </div>
