@@ -22,7 +22,7 @@ st.markdown(
         <img src="https://raw.githubusercontent.com/nik21hil/customer-vector-lab/main/assets/ns_logo1_transparent.png" width="100">
         <h1 style="margin: 0; font-size: 48px;">Customer Vector Lab</h1>
     </div>
-    <p style="text-align: center; color: gray; font-size: 15px; margin-top: -10px;">
+    <p style="text-align: center; color: gray; font-size: 15px; margin-top: -10px; margin-bottom: 5px;">
         A lightweight, no-code interface to generate customer embeddings, cluster personas, and visualize segmentation insights.
     </p>
     """,
