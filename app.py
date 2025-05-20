@@ -112,7 +112,7 @@ if uploaded_file is not None:
         col1, col2 = st.columns(2)
         
         with col1:
-            st.markdown("**PCA Scatter Plot**", unsafe_allow_html=False)
+            st.markdown("**PCA Scatter Plot**", unsafe_allow_html=True)
             fig, ax = plt.subplots(figsize=(5, 4))
             scatter = ax.scatter(df_with_clusters["PC1"], df_with_clusters["PC2"],
                                  c=df_with_clusters["Cluster"], cmap='rainbow', edgecolor='k')
@@ -121,7 +121,7 @@ if uploaded_file is not None:
             st.pyplot(fig)
 
         with col2:
-            st.markdown("**Cluster Distribution**", unsafe_allow_html=False)
+            st.markdown("**Cluster Distribution**", unsafe_allow_html=True)
             fig2 = plot_cluster_distribution(df_with_clusters)
             fig2.set_size_inches(5, 4)
             st.pyplot(fig2)
