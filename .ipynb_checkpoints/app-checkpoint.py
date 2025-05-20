@@ -110,16 +110,18 @@ if uploaded_file is not None:
         # PCA + Cluster Distribution side-by-side
         st.markdown("##### 📊 PCA & Cluster Distribution")
         col1, col2 = st.columns(2)
+        
         with col1:
+            st.markdown("**PCA Scatter Plot**", unsafe_allow_html=True)
             fig, ax = plt.subplots(figsize=(5, 4))
             scatter = ax.scatter(df_with_clusters["PC1"], df_with_clusters["PC2"],
                                  c=df_with_clusters["Cluster"], cmap='rainbow', edgecolor='k')
             ax.set_xlabel("PC1")
             ax.set_ylabel("PC2")
-            ax.set_title("PCA Scatter")
             st.pyplot(fig)
 
         with col2:
+            st.markdown("**Cluster Distribution**", unsafe_allow_html=True)
             fig2 = plot_cluster_distribution(df_with_clusters)
             fig2.set_size_inches(5, 4)
             st.pyplot(fig2)
@@ -129,22 +131,24 @@ if uploaded_file is not None:
         col3, col4 = st.columns(2)
 
         with col3:
-            #st.markdown("**UMAP Projection**")
+            st.markdown("**UMAP Projection**", unsafe_allow_html=True)
             st.pyplot(plot_umap(df_pca, labels=df_with_clusters['Cluster']))
-
+        
         with col4:
-            #st.markdown("**t-SNE Projection**")
+            st.markdown("**t-SNE Projection**", unsafe_allow_html=True)
             st.pyplot(plot_tsne(df_pca, labels=df_with_clusters['Cluster']))
 
         # Radar Chart
+
         st.markdown("##### 🕸️ Cluster Personas (Radar Chart)")
         st.markdown("Shows average values of selected numeric fields across clusters.")
-
+        
         if radar_cols:
             with st.container():
                 st.pyplot(plot_radar_chart(df_with_clusters, cluster_col='Cluster', numeric_cols=radar_cols))
         else:
             st.warning("Please select at least one numeric column for radar chart.")
+        
 
         # Persona Summary Table
         st.markdown("##### 📋 Persona Summary Table")
