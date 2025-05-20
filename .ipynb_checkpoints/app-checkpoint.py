@@ -8,9 +8,9 @@ from src.embeddings import get_numeric_features, scale_features, generate_pca_em
 from src.clustering import perform_kmeans
 from src.visualize import plot_umap, plot_radar_chart, plot_cluster_distribution, plot_tsne
 
-st.set_page_config(page_title="** Customer Vector Lab **")
+st.set_page_config(page_title="Customer Vector Lab")
 
-st.markdown("<h1 style='text-align: center;'>Customer Vector Lab</h1>", unsafe_allow_html=True)
+st.markdown("<h1 style='text-align: center;'>🧠 Customer Vector Lab</h1>", unsafe_allow_html=True)
 
 st.markdown("""
 <div style='text-align: center; font-size:16px;'>
