@@ -13,23 +13,22 @@ from src.visualize import plot_umap, plot_radar_chart, plot_cluster_distribution
 
 st.set_page_config(
     page_title="Customer Vector Lab",
-    page_icon="https://raw.githubusercontent.com/nik21hil/customer-vector-lab/main/assets/ns_logo1.png",
+    page_icon="https://raw.githubusercontent.com/nik21hil/customer-vector-lab/main/assets/ns_logo1_transparent.png",
 )
 
 st.markdown(
     """
-    <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 20px;">
-        <img src="https://raw.githubusercontent.com/nik21hil/customer-vector-lab/main/assets/ns_logo1.png" width="60" style="margin-right: 10px;">
-        <div>
-            <h1 style="margin: 0; font-size: 32px;">VectorLab</h1>
-            <p style="margin: 0; color: gray; font-size: 15px;">
-                Customer Segmentation · Embeddings · Personas
-            </p>
-        </div>
+    <div style="display: flex; justify-content: center; align-items: center; gap: 15px; margin-bottom: 10px;">
+        <img src="https://raw.githubusercontent.com/nik21hil/customer-vector-lab/main/assets/ns_logo1_transparent.png" width="60">
+        <h1 style="margin: 0; font-size: 32px;">Customer Vector Lab</h1>
     </div>
+    <p style="text-align: center; color: gray; font-size: 15px; margin-top: -5px;">
+        A lightweight, no-code interface to generate customer embeddings, cluster personas, and visualize segmentation insights.
+    </p>
     """,
     unsafe_allow_html=True
 )
+
 
 
 st.markdown("""
