@@ -29,14 +29,6 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-
-
-st.markdown("""
-<div style='text-align: center; font-size:16px;'>
-A lightweight, no-code interface to generate customer embeddings, cluster personas, and visualize segmentation insights.
-</div>
-""", unsafe_allow_html=True)
-
 st.markdown("---")
 
 st.markdown("###### 📌 Description")
