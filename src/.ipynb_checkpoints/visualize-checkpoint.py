@@ -85,7 +85,7 @@ def plot_radar_chart(df: pd.DataFrame, cluster_col: str, numeric_cols: list):
     angles = np.linspace(0, 2 * np.pi, num_vars, endpoint=False).tolist()
     angles += angles[:1]  # loop
 
-    fig, ax = plt.subplots(figsize=(6, 6), subplot_kw=dict(polar=True))
+    fig, ax = plt.subplots(figsize=(5, 4), subplot_kw=dict(polar=True))  # Match sizing
 
     for cluster in clusters:
         avg_values = df[df[cluster_col] == cluster][numeric_cols].mean().tolist()
@@ -96,6 +96,6 @@ def plot_radar_chart(df: pd.DataFrame, cluster_col: str, numeric_cols: list):
     ax.set_theta_offset(np.pi / 2)
     ax.set_theta_direction(-1)
     ax.set_thetagrids(np.degrees(angles[:-1]), numeric_cols)
-    ax.set_title("Cluster Personas Radar Chart")
-    ax.legend(loc='upper right', bbox_to_anchor=(1.2, 1.1))
+    ax.set_title("Cluster Personas (Radar Chart)", y=1.08)
+    ax.legend(loc='upper right', bbox_to_anchor=(1.3, 1.1))
     return fig
