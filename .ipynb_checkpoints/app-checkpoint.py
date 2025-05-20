@@ -74,7 +74,7 @@ uploaded_file = st.file_uploader("Upload CSV", type="csv")
 
 if uploaded_file is not None:
     df = pd.read_csv(uploaded_file)
-    st.markdown("##### 📄 Raw Uploaded Data")
+    st.markdown("###### 📄 Raw Uploaded Data")
     st.dataframe(df.head())
 
     df_clean = clean_customer_data(df)
