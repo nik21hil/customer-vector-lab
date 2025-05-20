@@ -103,7 +103,7 @@ if uploaded_file is not None:
         st.warning("Please select at least one numeric column for radar chart.")
 
     st.markdown("---")
-    st.markdown("##### 📋 Persona Summary Table")
+    st.markdown("#####  Persona Summary Table")
     if radar_cols:
         cluster_summary = df_with_clusters.groupby('Cluster')[radar_cols].mean().round(2)
         st.dataframe(cluster_summary)
