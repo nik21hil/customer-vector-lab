@@ -133,7 +133,7 @@ if uploaded_file is not None:
         st.markdown("Shows average values of selected numeric fields across clusters.")
         
         if radar_cols:
-            col1, col2, col3 = st.columns([1, 2, 1])  # Center-weighted
+            col1, col2, col3 = st.columns([0.5, 2, 0.5])  # Center-weighted
             with col2:
                 st.pyplot(plot_radar_chart(df_with_clusters, cluster_col='Cluster', numeric_cols=radar_cols))
         else:
