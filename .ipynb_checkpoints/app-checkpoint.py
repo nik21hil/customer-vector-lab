@@ -133,8 +133,8 @@ if uploaded_file is not None:
         st.markdown("Shows average values of selected numeric fields across clusters.")
         
         if radar_cols:
-            with st.container():
-                st.pyplot(plot_radar_chart(df_with_clusters, cluster_col='Cluster', numeric_cols=radar_cols))
+            #with st.container():
+            st.pyplot(plot_radar_chart(df_with_clusters, cluster_col='Cluster', numeric_cols=radar_cols))
         else:
             st.warning("Please select at least one numeric column for radar chart.")
         
