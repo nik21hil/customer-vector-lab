@@ -14,21 +14,25 @@ def load_customer_data(file_path: str) -> pd.DataFrame:
         print(f"❌ Error loading file: {e}")
         raise
 
-def clean_customer_data(df: pd.DataFrame) -> pd.DataFrame:
-    """
-    Cleans customer data:
-    - Standardizes column names
-    - Fills missing values
-    - Trims whitespace from string fields
-    """
-    # Standardize column names
-    df.columns = df.columns.str.lower().str.replace(' ', '_')
 
-    # Fill missing values
-    for col in df.select_dtypes(include='object').columns:
-        df[col] = df[col].fillna("Unknown").str.strip()
-    for col in df.select_dtypes(include=['int', 'float']).columns:
-        df[col] = df[col].fillna(df[col].median())
+def clean_customer_data(df: pd.DataFrame) -> pd.DataFrame:
+    df = df.copy()
+
+    # Drop obviously irrelevant columns (like ID columns, if any)
+    id_cols = [col for col in df.columns if 'id' in col.lower()]
+    df.drop(columns=id_cols, inplace=True, errors='ignore')
+
+    # Drop columns with too many missing values
+    df = df.dropna(thresh=len(df) * 0.5, axis=1)
+
+    # Fill missing numeric values with median
+    numeric_cols = df.select_dtypes(include='number').columns
+    df[numeric_cols] = df[numeric_cols].fillna(df[numeric_cols].median())
+
+    # Handle categorical variables
+    cat_cols = df.select_dtypes(include='object').columns
+    if len(cat_cols) > 0:
+        df = pd.get_dummies(df, columns=cat_cols, drop_first=True)
 
     print(f"✅ Cleaned data with shape: {df.shape}")
     return df
