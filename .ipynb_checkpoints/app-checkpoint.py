@@ -10,7 +10,7 @@ from src.visualize import plot_umap, plot_radar_chart, plot_cluster_distribution
 
 st.set_page_config(page_title="Customer Vector Lab")
 
-st.markdown("<h1 style='text-align: center;'>🧠 Customer Vector Lab</h1>", unsafe_allow_html=True)
+st.markdown("<h1 style='text-align: center;'>🌐 Customer Vector Lab 🌐</h1>", unsafe_allow_html=True)
 
 st.markdown("""
 <div style='text-align: center; font-size:16px;'>
@@ -20,28 +20,24 @@ A lightweight, no-code interface to generate customer embeddings, cluster person
 
 st.markdown("---")
 
-st.markdown("##### 📌 Description")
+st.markdown("###### 📌 Description")
 st.markdown("""
 **Customer Vector Lab** enables quick, interactive clustering and persona exploration for any structured customer dataset.
 
-It transforms raw customer records into meaningful segments using PCA-based embeddings and KMeans clustering, then visualizes them using scatter plots, UMAP, t-SNE, radar charts, and downloadable CSVs — all in a browser-friendly format.
+It transforms raw customer records into meaningful segments using PCA-based embeddings and KMeans clustering, then visualizes them using scatter plots, UMAP, t-SNE, radar charts, and downloadable CSVs, all in a browser-friendly format.
 """)
 
-st.markdown("##### 📂 Supported Data")
+st.markdown("###### 📂 Supported Data")
 st.markdown("""
 - Any **CSV** with numeric customer features
-- Typical fields include:
-  - Demographics (age, income, location)
-  - Behavioral signals (spending, visits, engagement)
-  - Transaction summaries (LTV, frequency, recency)
+- Typical fields include: Demographics (age, income, location) | Behavioral signals (spending, visits, engagement) | Transaction summaries (LTV, frequency, recency)
 
 _Categorical columns and IDs are automatically excluded during preprocessing._
 """)
 
-st.markdown("##### 🧰 Features")
+st.markdown("###### 🧰 Features")
 st.markdown("""
 This tool allows you to:
-
 - Upload customer datasets
 - Automatically clean and standardize your data
 - Generate vector embeddings using PCA
@@ -52,13 +48,13 @@ This tool allows you to:
 Great for segmentation, personalization, and analytics storytelling.
 """)
 
-st.markdown("##### 🚀 Use Cases")
-st.markdown("""
-- Customer persona generation for marketing and targeting
-- Segment discovery for business intelligence teams
-- Visual storytelling for analytics presentations
-- Lightweight vectorization for downstream ML tasks
-""")
+# st.markdown("##### 🚀 Use Cases")
+# st.markdown("""
+# - Customer persona generation for marketing and targeting
+# - Segment discovery for business intelligence teams
+# - Visual storytelling for analytics presentations
+# - Lightweight vectorization for downstream ML tasks
+# """)
 
 st.markdown("---")
 
