@@ -153,6 +153,6 @@ if uploaded_file is not None:
 st.markdown("""
 <hr style='border: none; border-top: 1px solid #eee;' />
 <p style='text-align: center; font-size: 13px; color: gray;'>
-Made with ❤️ using Streamlit · © 2024 NS AI Studio
+An open-source AI toolkit by <a href="https://github.com/nik21hil" target="_blank" style="color: #888;">@nik21hil</a> · MIT Licensed
 </p>
 """, unsafe_allow_html=True)
