@@ -74,7 +74,7 @@ uploaded_file = st.file_uploader("Upload CSV", type="csv")
 
 if uploaded_file is not None:
     df = pd.read_csv(uploaded_file)
-    st.markdown("### 📄 Raw Uploaded Data")
+    st.markdown("##### 📄 Raw Uploaded Data")
     st.dataframe(df.head())
 
     df_clean = clean_customer_data(df)
@@ -89,10 +89,10 @@ if uploaded_file is not None:
 
     # Sidebar form
     with st.sidebar.form("controls"):
-        st.markdown("### 🔢 Clustering Controls")
+        st.markdown("#### 🔢 Clustering Controls")
         n_clusters = st.slider("Select number of clusters (K):", min_value=2, max_value=10, value=3)
 
-        st.markdown("### 🕸️ Radar Chart Features")
+        st.markdown("#### 🕸️ Radar Chart Features")
         radar_cols = st.multiselect("Select numeric features for radar chart:",
                                     options=default_radar_cols,
                                     default=default_radar_cols[:3])
@@ -106,7 +106,7 @@ if uploaded_file is not None:
         df_with_clusters['Cluster'] = df_with_clusters['Cluster'].astype(int)
 
         # PCA + Cluster Distribution side-by-side
-        st.markdown("#### 📊 PCA & Cluster Distribution")
+        st.markdown("##### 📊 PCA & Cluster Distribution")
         col1, col2 = st.columns(2)
         with col1:
             fig, ax = plt.subplots(figsize=(5, 4))
@@ -123,7 +123,7 @@ if uploaded_file is not None:
             st.pyplot(fig2)
 
         # UMAP + t-SNE
-        st.markdown("#### 🧬 Dimensionality Reduction")
+        st.markdown("##### 🧬 Dimensionality Reduction")
         col3, col4 = st.columns(2)
 
         with col3:
@@ -135,7 +135,7 @@ if uploaded_file is not None:
             st.pyplot(plot_tsne(df_pca, labels=df_with_clusters['Cluster']))
 
         # Radar Chart
-        st.markdown("#### 🕸️ Cluster Personas (Radar Chart)")
+        st.markdown("##### 🕸️ Cluster Personas (Radar Chart)")
         st.markdown("Shows average values of selected numeric fields across clusters.")
 
         if radar_cols:
@@ -145,13 +145,13 @@ if uploaded_file is not None:
             st.warning("Please select at least one numeric column for radar chart.")
 
         # Persona Summary Table
-        st.markdown("#### 📋 Persona Summary Table")
+        st.markdown("##### 📋 Persona Summary Table")
         if radar_cols:
             cluster_summary = df_with_clusters.groupby('Cluster')[radar_cols].mean().round(2)
             st.dataframe(cluster_summary)
 
         # CSV Export
-        st.markdown("#### 📤 Download Clustered Output")
+        st.markdown("##### 📤 Download Clustered Output")
         csv = df_with_clusters.to_csv(index=False).encode('utf-8')
         st.download_button(
             label="Download clustered data as CSV",
