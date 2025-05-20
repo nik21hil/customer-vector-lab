@@ -149,3 +149,10 @@ if uploaded_file is not None:
             file_name='customer_clusters.csv',
             mime='text/csv',
         )
+
+st.markdown("""
+<hr style='border: none; border-top: 1px solid #eee;' />
+<p style='text-align: center; font-size: 13px; color: gray;'>
+Made with ❤️ using Streamlit · © 2024 NS AI Studio
+</p>
+""", unsafe_allow_html=True)
