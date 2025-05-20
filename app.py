@@ -96,7 +96,7 @@ if uploaded_file is not None:
         st.markdown(f"<span style='color: gray;'>Recommended: <b>{optimal_k}</b> (silhouette: {sil_score})</span>", unsafe_allow_html=True)
         n_clusters = st.slider("Select number of clusters (K):", min_value=2, max_value=10, value=optimal_k)
 
-        st.markdown("### 🕸️ Radar Chart Features")        
+        st.markdown("#### 🕸️ Radar Chart Features")        
         radar_cols = st.multiselect("Select numeric features for radar chart:", options=default_radar_cols, default=default_radar_cols[:3])
         apply_clicked = st.form_submit_button("✅ Apply Changes")
 
