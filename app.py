@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 from src.preprocess import clean_customer_data
 from src.embeddings import get_numeric_features, scale_features, generate_pca_embeddings
 from src.clustering import perform_kmeans
-from src.visualize import plot_umap, plot_radar_chart, plot_cluster_distribution, plot_tsne
+from src.visualize import plot_umap, plot_radar_chart, plot_cluster_distribution, plot_tsne, plot_pca_scatter
 
 #st.set_page_config(page_title="Customer Vector Lab")
 
@@ -112,30 +112,19 @@ if uploaded_file is not None:
         col1, col2 = st.columns(2)
         
         with col1:
-            st.markdown("**PCA Scatter Plot**", unsafe_allow_html=True)
-            fig, ax = plt.subplots(figsize=(5, 4))
-            scatter = ax.scatter(df_with_clusters["PC1"], df_with_clusters["PC2"],
-                                 c=df_with_clusters["Cluster"], cmap='rainbow', edgecolor='k')
-            ax.set_xlabel("PC1")
-            ax.set_ylabel("PC2")
-            st.pyplot(fig)
+            st.pyplot(plot_pca_scatter(df_with_clusters))
 
         with col2:
-            st.markdown("**Cluster Distribution**", unsafe_allow_html=True)
-            fig2 = plot_cluster_distribution(df_with_clusters)
-            fig2.set_size_inches(5, 4)
-            st.pyplot(fig2)
+            st.pyplot(plot_cluster_distribution(df_with_clusters))
 
         # UMAP + t-SNE
         st.markdown("##### 🧬 Dimensionality Reduction")
         col3, col4 = st.columns(2)
 
         with col3:
-            st.markdown("**UMAP Projection**", unsafe_allow_html=True)
             st.pyplot(plot_umap(df_pca, labels=df_with_clusters['Cluster']))
         
         with col4:
-            st.markdown("**t-SNE Projection**", unsafe_allow_html=True)
             st.pyplot(plot_tsne(df_pca, labels=df_with_clusters['Cluster']))
 
         # Radar Chart

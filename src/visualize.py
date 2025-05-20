@@ -51,10 +51,26 @@ def plot_tsne(df_embeddings: pd.DataFrame, labels=None, title="t-SNE Projection"
     return fig
 
 
+def plot_pca_scatter(df_with_clusters):
+    fig, ax = plt.subplots(figsize=(5, 4))
+    scatter = ax.scatter(
+        df_with_clusters["PC1"],
+        df_with_clusters["PC2"],
+        c=df_with_clusters["Cluster"],
+        cmap="rainbow",
+        edgecolor="k"
+    )
+    ax.set_xlabel("PC1")
+    ax.set_ylabel("PC2")
+    ax.set_title("PCA Scatterplot")
+    ax.spines['top'].set_visible(False)
+    ax.spines['right'].set_visible(False)
+    return fig
+
 def plot_cluster_distribution(df_with_clusters: pd.DataFrame):
     fig, ax = plt.subplots(figsize=(5, 4))
     sns.countplot(x='Cluster', data=df_with_clusters, palette='pastel', ax=ax)
-    ax.set_title("Customer Count per Cluster")
+    ax.set_title("Cluster Distribution")
     ax.set_xlabel("Cluster")
     ax.set_ylabel("Count")
     ax.grid(True)
@@ -80,6 +96,6 @@ def plot_radar_chart(df: pd.DataFrame, cluster_col: str, numeric_cols: list):
     ax.set_theta_offset(np.pi / 2)
     ax.set_theta_direction(-1)
     ax.set_thetagrids(np.degrees(angles[:-1]), numeric_cols)
-    ax.set_title("Cluster Personas Radar Chart", y=1.08)
+    ax.set_title("Cluster Personas Radar Chart")
     ax.legend(loc='upper right', bbox_to_anchor=(1.2, 1.1))
     return fig
