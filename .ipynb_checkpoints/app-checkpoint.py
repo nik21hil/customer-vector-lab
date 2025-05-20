@@ -121,7 +121,7 @@ if uploaded_file is not None:
             st.pyplot(fig)
 
         with col2:
-            st.markdown("**Cluster Distribution**", unsafe_allow_html=True)
+            st.markdown("**Cluster Distribution**", unsafe_allow_html=False)
             fig2 = plot_cluster_distribution(df_with_clusters)
             fig2.set_size_inches(5, 4)
             st.pyplot(fig2)
