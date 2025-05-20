@@ -138,7 +138,8 @@ if uploaded_file is not None:
                 st.pyplot(plot_radar_chart(df_with_clusters, cluster_col='Cluster', numeric_cols=radar_cols))
         else:
             st.warning("Please select at least one numeric column for radar chart.")
-        
+
+        st.markdown("---")
 
         # Persona Summary Table
         st.markdown("##### 📋 Persona Summary Table")

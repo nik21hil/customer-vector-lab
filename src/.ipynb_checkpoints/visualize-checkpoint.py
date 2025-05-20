@@ -27,7 +27,7 @@ def plot_umap(df_embeddings: pd.DataFrame, labels=None, title="UMAP Projection")
     ax.set_title(title)
     ax.set_xlabel("UMAP-1")
     ax.set_ylabel("UMAP-2")
-    ax.grid(True)
+    ax.grid(False)
 
     return fig
 
@@ -47,7 +47,7 @@ def plot_tsne(df_embeddings: pd.DataFrame, labels=None, title="t-SNE Projection"
     ax.set_title(title + f" (perplexity={perplexity})")
     ax.set_xlabel("tSNE-1")
     ax.set_ylabel("tSNE-2")
-    ax.grid(True)
+    ax.grid(False)
     return fig
 
 
@@ -62,9 +62,11 @@ def plot_pca_scatter(df_with_clusters):
     )
     ax.set_xlabel("PC1")
     ax.set_ylabel("PC2")
-    ax.set_title("PCA Scatterplot")
-    ax.spines['top'].set_visible(False)
-    ax.spines['right'].set_visible(False)
+    ax.set_title("PCA Scatter Plot")
+    for spine in ax.spines.values():
+        spine.set_edgecolor('black')
+        spine.set_linewidth(0.8)
+        
     return fig
 
 def plot_cluster_distribution(df_with_clusters: pd.DataFrame):
@@ -73,7 +75,9 @@ def plot_cluster_distribution(df_with_clusters: pd.DataFrame):
     ax.set_title("Cluster Distribution")
     ax.set_xlabel("Cluster")
     ax.set_ylabel("Count")
-    ax.grid(True)
+    ax.grid(False)
+    ax.set_axisbelow(False)
+
     return fig
 
 def plot_radar_chart(df: pd.DataFrame, cluster_col: str, numeric_cols: list):
