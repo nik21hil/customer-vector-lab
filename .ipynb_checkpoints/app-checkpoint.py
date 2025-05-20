@@ -18,7 +18,7 @@ st.set_page_config(
 
 st.markdown(
     """
-    <div style="display: flex; justify-content: center; align-items: center; gap: 15px; margin-bottom: 10px;">
+    <div style="display: flex; justify-content: center; align-items: center; gap: 15px; margin-bottom: 5px;">
         <img src="https://raw.githubusercontent.com/nik21hil/customer-vector-lab/main/assets/ns_logo1_transparent.png" width="100">
         <h1 style="margin: 0; font-size: 48px;">Customer Vector Lab</h1>
     </div>
