@@ -10,6 +10,18 @@ from src.visualize import plot_umap, plot_radar_chart, plot_cluster_distribution
 
 st.set_page_config(page_title="Customer Vector Lab")
 
+st.markdown(
+    """
+    <div style='text-align: center;'>
+        <img src='https://raw.githubusercontent.com/nik21hil/customer-vector-lab/main/assets/ns_logo1.png' width='120'>
+        <h1 style='margin-bottom: 5px;'>VectorLab</h1>
+        <p style='color: gray; font-size: 16px; margin-top: -10px;'>Customer Segmentation · Embeddings · Personas</p>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+
+
 st.markdown("<h1 style='text-align: center;'>🧠 Customer Vector Lab</h1>", unsafe_allow_html=True)
 
 st.markdown("""
