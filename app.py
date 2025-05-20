@@ -122,6 +122,9 @@ if uploaded_file is not None:
         with col2:
             fig2 = plot_cluster_distribution(df_with_clusters)
             fig2.set_size_inches(5, 4)
+            ax.set_xlabel("PC1")
+            ax.set_ylabel("PC2")
+            ax.set_title("PCA Scatter")
             st.pyplot(fig2)
 
         # UMAP + t-SNE
