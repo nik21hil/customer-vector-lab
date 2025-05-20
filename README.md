@@ -10,7 +10,7 @@
 
 **Customer Vector Lab** is a no-code tool to:
 
-- Upload raw customer CSV data
+- Upload raw customer data
 - Automatically clean and standardize numeric features
 - Generate vector embeddings using PCA
 - Cluster customers using KMeans
@@ -21,6 +21,24 @@
 - Explore customer distribution across clusters
 
 It's perfect for **data scientists**, **marketers**, and **business analysts** to quickly identify segments and personas for personalization, targeting, or storytelling.
+
+---
+
+## 📂 Input Data Format
+
+- CSV format
+- Works best with customer records that include:
+  - Demographics (age, income, location)
+  - Behavioral signals (spending, visits)
+  - Transaction data (LTV, frequency)
+- Categorical variables are automatically one-hot encoded
+- ID columns are excluded from clustering
+
+---
+
+## 📤 Output
+- Final dataset includes all original columns + cluster labels + PC1/PC2
+- Ready for persona marketing, analysis, or targeted campaigns
 
 ---
 
@@ -48,6 +66,7 @@ streamlit run app.py
 
 ```
 customer-vector-lab/
+├── assets/            # To store logo images or any other artifact
 ├── data/              # Sample customer CSVs
 ├── notebooks/         # Jupyter demo notebooks
 ├── src/               # Modular Python code
@@ -72,16 +91,6 @@ customer-vector-lab/
 
 ---
 
-## 💡 Future Improvements
-
-- Export clusters and segments as downloadable CSVs
-- Allow users to choose number of clusters dynamically
-- Add support for categorical variable encoding
-- Filter and zoom into radar chart personas
-- Add authentication for saving runs
-
----
-
 ## 🧾 License
 
 MIT License — feel free to fork, remix, and use.
@@ -91,4 +100,14 @@ MIT License — feel free to fork, remix, and use.
 ## 🙌 Acknowledgements
 
 Built by [@nik21hil](https://github.com/nik21hil)  
+
+---
+
+## 📬 Feedback
+For issues or suggestions, feel free to open a [GitHub issue](https://github.com/nik21hil/customer-vector-lab/issues) or connect via [LinkedIn](https://linkedin.com/in/nkhlsngh).
+
+---
+
+Enjoy exploring your customer data! 🎯
+
 
