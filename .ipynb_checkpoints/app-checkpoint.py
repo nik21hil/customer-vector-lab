@@ -155,4 +155,4 @@ st.markdown("""
 <p style='text-align: center; font-size: 13px; color: gray;'>
 Made with ❤️ using Streamlit · © 2024 NS AI Studio
 </p>
-""", unsafe_allow_html=False)
+""", unsafe_allow_html=True)
