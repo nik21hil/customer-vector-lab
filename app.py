@@ -13,7 +13,7 @@ from src.visualize import plot_umap, plot_radar_chart, plot_cluster_distribution
 
 st.set_page_config(
     page_title="Customer Vector Lab",
-    page_icon="https://raw.githubusercontent.com/nik21hil/customer-vector-lab/main/assets/ns_logo1_favicon.png",
+    page_icon="https://raw.githubusercontent.com/nik21hil/customer-vector-lab/main/assets/ns_logo1.png",
 )
 
 st.markdown(

@@ -13,13 +13,13 @@ from src.visualize import plot_umap, plot_radar_chart, plot_cluster_distribution
 
 st.set_page_config(
     page_title="Customer Vector Lab",
-    page_icon="https://raw.githubusercontent.com/nik21hil/customer-vector-lab/assets/ns_logo1_favicon.png",
+    page_icon="https://raw.githubusercontent.com/nik21hil/customer-vector-lab/main/assets/ns_logo1.png",
 )
 
 st.markdown(
     """
     <div style='text-align: center;'>
-        <img src='https://raw.githubusercontent.com/nik21hil/customer-vector-lab/assets/ns_logo1.png' width='120'>
+        <img src='https://raw.githubusercontent.com/nik21hil/customer-vector-lab/main/assets/ns_logo1.png' width='120'>
         <h1 style='margin-bottom: 5px;'>VectorLab</h1>
         <p style='color: gray; font-size: 16px; margin-top: -10px;'>Customer Segmentation · Embeddings · Personas</p>
     </div>
