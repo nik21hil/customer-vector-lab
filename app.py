@@ -5,7 +5,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from src.preprocess import clean_customer_data
 from src.embeddings import get_numeric_features, scale_features, generate_pca_embeddings
-from src.clustering import perform_kmeans
+from src.clustering import perform_kmeans, recommend_optimal_k
 from src.visualize import plot_umap, plot_radar_chart, plot_cluster_distribution, plot_tsne, plot_pca_scatter
 
 #st.set_page_config(page_title="Customer Vector Lab")
@@ -87,16 +87,17 @@ if uploaded_file is not None:
     exclude_cols = ['PC1', 'PC2', 'Cluster']
     default_radar_cols = [col for col in all_numeric_cols if col not in exclude_cols]
 
+    # Calculate optimal clusters
+    optimal_k, sil_score = recommend_optimal_k(df_pca)
+    
     # Sidebar form
     with st.sidebar.form("controls"):
         st.markdown("#### 🔢 Clustering Controls")
-        n_clusters = st.slider("Select number of clusters (K):", min_value=2, max_value=10, value=3)
+        st.markdown(f"<span style='color: gray;'>Recommended: <b>{optimal_k}</b> (silhouette: {sil_score})</span>", unsafe_allow_html=True)
+        n_clusters = st.slider("Select number of clusters (K):", min_value=2, max_value=10, value=optimal_k)
 
-        st.markdown("#### 🕸️ Radar Chart Features")
-        radar_cols = st.multiselect("Select numeric features for radar chart:",
-                                    options=default_radar_cols,
-                                    default=default_radar_cols[:3])
-
+        st.markdown("#### 🕸️ Radar Chart Features")        
+        radar_cols = st.multiselect("Select numeric features for radar chart:", options=default_radar_cols, default=default_radar_cols[:3])
         apply_clicked = st.form_submit_button("✅ Apply Changes")
 
     if apply_clicked:
