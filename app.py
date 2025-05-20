@@ -19,8 +19,8 @@ st.set_page_config(
 st.markdown(
     """
     <div style="display: flex; justify-content: center; align-items: center; gap: 15px; margin-bottom: 10px;">
-        <img src="https://raw.githubusercontent.com/nik21hil/customer-vector-lab/main/assets/ns_logo1_transparent.png" width="60">
-        <h1 style="margin: 0; font-size: 32px;">Customer Vector Lab</h1>
+        <img src="https://raw.githubusercontent.com/nik21hil/customer-vector-lab/main/assets/ns_logo1_transparent.png" width="100">
+        <h1 style="margin: 0; font-size: 48px;">Customer Vector Lab</h1>
     </div>
     <p style="text-align: center; color: gray; font-size: 15px; margin-top: -5px;">
         A lightweight, no-code interface to generate customer embeddings, cluster personas, and visualize segmentation insights.
