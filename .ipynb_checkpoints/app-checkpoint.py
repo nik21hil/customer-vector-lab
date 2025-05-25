@@ -62,7 +62,7 @@ Great for segmentation, personalization, and analytics storytelling.
 st.markdown("---")
 
 # File uploader
-st.markdown("**Upload CSV:**")
+st.markdown("###### 📤 Upload CSV:")
 uploaded_file = st.file_uploader("", type="csv")
 
 if uploaded_file is not None:
@@ -142,7 +142,7 @@ if uploaded_file is not None:
             st.dataframe(cluster_summary)
 
         # CSV Export
-        st.markdown("##### 📤 Download Clustered Output")
+        st.markdown("##### 📥 Download Clustered Output")
         csv = df_with_clusters.to_csv(index=False).encode('utf-8')
         st.download_button(
             label="Download clustered data as CSV",
