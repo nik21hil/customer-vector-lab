@@ -62,7 +62,7 @@ Great for segmentation, personalization, and analytics storytelling.
 st.markdown("---")
 
 # File uploader
-st.markdown("###### 📤 UploadCSV:")
+st.markdown("###### 📤 Upload CSV:")
 uploaded_file = st.file_uploader("", type="csv")
 
 if uploaded_file is not None:
