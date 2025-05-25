@@ -62,7 +62,8 @@ Great for segmentation, personalization, and analytics storytelling.
 st.markdown("---")
 
 # File uploader
-uploaded_file = st.file_uploader("Upload CSV", type="csv")
+st.markdown("**Upload CSV:**")
+uploaded_file = st.file_uploader(label="test", type="csv")
 
 if uploaded_file is not None:
     df = pd.read_csv(uploaded_file)
